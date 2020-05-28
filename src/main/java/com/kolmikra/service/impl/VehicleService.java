@@ -1,26 +1,22 @@
-package com.kolmikra.service;
+package com.kolmikra.service.impl;
 
 import com.kolmikra.entity.Vehicle;
-import com.kolmikra.entityDao.VehicleDao;
-import com.kolmikra.exception.NoSuchItemException;
+import com.kolmikra.entity.factory.impl.VehicleFactory;
 import com.kolmikra.repository.VehicleRepository;
+import com.kolmikra.service.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.awt.print.Book;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
-public class VehicleService extends AbstractService<VehicleDao,Vehicle, VehicleRepository> {
+public class VehicleService extends AbstractService<Vehicle, VehicleFactory, VehicleRepository> {
 
     @Autowired
     VehicleRepository vehicleRepository;
 
-    public List<Vehicle> findAll() {
-        List<VehicleDao> vehicleDaoList = vehicleRepository.findAll();
-        return vehicleDaoList.stream().map(Vehicle::new).collect(Collectors.toList());
-    }
+//    public List<Vehicle> findAll() {
+//        List<AbstractEntityDao> vehicleDaoList = vehicleRepository.findAll();
+//        return vehicleDaoList.stream().map(Vehicle::new).collect(Collectors.toList());
+//    }
 
 //    public Vehicle findById(int id) throws NoSuchItemException {
 //        VehicleDao vehicleDao = vehicleRepository.findById(id).orElseThrow(NoSuchItemException::new);

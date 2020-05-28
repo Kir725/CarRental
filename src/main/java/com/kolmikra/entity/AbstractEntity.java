@@ -1,6 +1,5 @@
 package com.kolmikra.entity;
 
-import com.kolmikra.entityDao.AbstractEntityDao;
 import lombok.Data;
 
 import javax.persistence.MappedSuperclass;
@@ -11,5 +10,5 @@ public abstract class AbstractEntity {
 
     protected int id;
 
-    public abstract <ED extends AbstractEntityDao> ED getDaoEntity();
+    //public abstract <ED extends AbstractEntityDao> ED getDaoEntity();
 }

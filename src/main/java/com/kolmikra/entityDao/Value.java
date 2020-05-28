@@ -1,12 +1,7 @@
 package com.kolmikra.entityDao;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kolmikra.entity.AbstractEntity;
-import com.kolmikra.entity.Vehicle;
 import lombok.Data;
-import org.hibernate.annotations.Any;
-import org.hibernate.annotations.AnyMetaDef;
-import org.hibernate.annotations.MetaValue;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -16,12 +11,12 @@ import java.sql.Date;
 @Entity
 @IdClass(ValueId.class)
 @Table(name = "value")
-public class Value <E extends AbstractEntityDao> {
+public class Value {
 
     @Id
-    @ManyToOne(targetEntity = VehicleDao.class, cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "object_id")
-    private E object_id;
+    private CommonEntityDao object_id;
 
     @Id
     @Column(name = "attribute_id")
@@ -45,38 +40,38 @@ public class Value <E extends AbstractEntityDao> {
     public Value() {
     }
 
-    public Value(E object_id, int attribute_id, Integer integerValue) {
+    public Value(CommonEntityDao object_id, int attribute_id, Integer integerValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
         this.integerValue = integerValue;
     }
 
-    public Value(E object_id, int attribute_id, Double decimalValue) {
+    public Value(CommonEntityDao object_id, int attribute_id, Double decimalValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
         this.decimalValue = decimalValue;
     }
 
-    public Value(E object_id, int attribute_id, Date dateValue) {
+    public Value(CommonEntityDao object_id, int attribute_id, Date dateValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
         this.dateValue = dateValue;
     }
 
-    public Value(E object_id, int attribute_id, String varcharValue) {
+    public Value(CommonEntityDao object_id, int attribute_id, String varcharValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
         this.varcharValue = varcharValue;
     }
 
-    public Value(E object_id, int attribute_id, Boolean booleanValue) {
+    public Value(CommonEntityDao object_id, int attribute_id, Boolean booleanValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
         this.booleanValue = booleanValue;
     }
 
-//    @JsonIgnore
-//    public VehicleDao getObject_id() {
-//        return object_id;
-//    }
+    @JsonIgnore
+    public CommonEntityDao getObject_id() {
+        return object_id;
+    }
 }

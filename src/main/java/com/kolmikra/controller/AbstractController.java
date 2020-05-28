@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.fge.jsonpatch.JsonPatch;
 import com.github.fge.jsonpatch.JsonPatchException;
+import com.kolmikra.entity.Vehicle;
 import com.kolmikra.exception.NoSuchItemException;
 import com.kolmikra.entity.AbstractEntity;
 import com.kolmikra.service.CommonService;
@@ -14,13 +15,15 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 public abstract class AbstractController<E extends AbstractEntity, S extends CommonService<E>> {
 
     @Autowired
     S service;
 
-    @GetMapping("/find")
-    public ResponseEntity<E> findById(@RequestParam int id) {
+    @CrossOrigin
+    @GetMapping("/find/{id}")
+    public ResponseEntity<E> findById(@PathVariable int id) {
         try {
             E entity = service.findById(id);
             return ResponseEntity.ok(entity);
@@ -28,7 +31,13 @@ public abstract class AbstractController<E extends AbstractEntity, S extends Com
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    @GetMapping("/find/all/{typeId}")
+    public List<E> findAll(@PathVariable int typeId) {
+        return service.findAll(typeId);
+    }
 
+    @CrossOrigin
     @DeleteMapping("/delete/{id}")
     public HttpStatus delete(@PathVariable int id) {
         try {
@@ -39,12 +48,14 @@ public abstract class AbstractController<E extends AbstractEntity, S extends Com
         }
     }
 
+    @CrossOrigin
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
     public void create(@RequestBody E entity) {
         service.create(entity);
     }
 
+    @CrossOrigin
     @PutMapping("/update/{id}")
     public ResponseEntity<E> update(@PathVariable int id, @RequestBody E entity) {
         try {

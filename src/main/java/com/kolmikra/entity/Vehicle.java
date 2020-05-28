@@ -1,14 +1,11 @@
 package com.kolmikra.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.kolmikra.entityDao.AbstractEntityDao;
-import com.kolmikra.entityDao.VehicleDao;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class Vehicle extends AbstractEntity{
+public class Vehicle extends AbstractEntity {
 
 
     private String regPlate;
@@ -55,25 +52,27 @@ public class Vehicle extends AbstractEntity{
         this.rented = rented;
     }
 
-    public Vehicle(VehicleDao vehicleDao) {
-        this.id = vehicleDao.getId();
-        this.regPlate = vehicleDao.getRegPlate();
-        this.model = vehicleDao.getModel();
-        this.make = vehicleDao.getMake();
-        this.vehicleClass = vehicleDao.getVehicleClass();
-        this.type = vehicleDao.getType();
-        this.color = vehicleDao.getColor();
-        this.issueYear = vehicleDao.getIssueYear();
-        this.insuranceCost = vehicleDao.getInsuranceCost();
-        this.capacity = vehicleDao.getCapacity();
-        this.rentalCostPerDay = vehicleDao.getRentalCostPerDay();
-        this.bail = vehicleDao.getBail();
-        this.rented = vehicleDao.isRented();
-    }
+//    public Vehicle(VehicleDao vehicleDao) {
+//        this.id = vehicleDao.getId();
+//        this.regPlate = vehicleDao.getRegPlate();
+//        this.model = vehicleDao.getModel();
+//        this.make = vehicleDao.getMake();
+//        this.vehicleClass = vehicleDao.getVehicleClass();
+//        this.type = vehicleDao.getType();
+//        this.color = vehicleDao.getColor();
+//        this.issueYear = vehicleDao.getIssueYear();
+//        this.insuranceCost = vehicleDao.getInsuranceCost();
+//        this.capacity = vehicleDao.getCapacity();
+//        this.rentalCostPerDay = vehicleDao.getRentalCostPerDay();
+//        this.bail = vehicleDao.getBail();
+//        this.rented = vehicleDao.isRented();
+//    }
+//
+//    @Override
+//    @JsonIgnore
+//    public VehicleDao getDaoEntity() {
+//        return new VehicleDao(this);
+//    }
 
-    @Override
-    @JsonIgnore
-    public VehicleDao getDaoEntity() {
-        return new VehicleDao(this);
-    }
+
 }
