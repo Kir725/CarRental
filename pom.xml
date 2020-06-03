@@ -7,6 +7,7 @@
     <groupId>com.kolmikra</groupId>
     <artifactId>CarRental</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <build>
         <plugins>
             <plugin>
@@ -23,6 +24,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter</artifactId>
+
         <version>2.2.6.RELEASE</version>
     </parent>
 
@@ -30,6 +32,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+            <type>pom</type>
         </dependency>
 
         <dependency>
