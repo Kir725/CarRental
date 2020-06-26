@@ -25,9 +25,12 @@ public interface AttributeTitle {
     int passportIdNumb = 22;
     int birthDateNumb = 23;
     int startDateNumb = 24;
-    int rentalTimeNumb = 25;
+    int dropOffDateNumb = 25;
     int rentalCostNumb = 26;
     int bailNumb = 29;
     int contractSignedNumb = 30;
     int carIssuedNumb = 31;
+    int passwordNumb = 32;
+    int userTypeNumb = 33;
+    int beClientNumb = 34;
 }

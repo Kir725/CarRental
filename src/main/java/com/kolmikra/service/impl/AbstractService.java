@@ -37,8 +37,8 @@ public abstract class AbstractService<E extends AbstractEntity, F extends Entity
     }
 
     @Override
-    public void create(E entity) {
-        repository.save(entityFactory.getDaoEntity(entity));
+    public E create(E entity) {
+        return entityFactory.getRealEntity(repository.save(entityFactory.getDaoEntity(entity)));
     }
 
     @Override

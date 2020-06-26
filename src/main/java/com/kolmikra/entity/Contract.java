@@ -11,7 +11,7 @@ public class Contract extends AbstractEntity{
 
     private Date startDate;
 
-    private Integer rentalTime;
+    private Date dropOffDate;
 
     private Double rentalCost;
 

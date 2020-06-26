@@ -5,7 +5,9 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.kolmikra.attribute.AttributeTitle.*;
@@ -38,7 +40,16 @@ public class CommonEntityDao {
     }
 
     private List<Reference> getReference(int refType) {
-        return this.getReferences().stream().filter(v -> v.getRef_type() == refType).collect(Collectors.toList());
+        List<Reference> references = new ArrayList<>();
+        if(null!=this.getReferences()){
+            this.getReferences().forEach(v->{
+                if(v.getRef_type()==refType){
+                    references.add(v);
+                }
+            });
+        }
+//        return this.getReferences().stream().filter(v -> v.getRef_type() == refType).collect(Collectors.toList());
+        return references;
     }
 
     public String getRegPlate() {
@@ -141,21 +152,39 @@ public class CommonEntityDao {
         return this.getValue(startDateNumb).getDateValue();
     }
 
-    public Integer getRentalTime() {
-        return this.getValue(rentalTimeNumb).getIntegerValue();
+    public Date getDropOffDate() {
+        return this.getValue(dropOffDateNumb).getDateValue();
     }
 
     public Double getRentalCost() {
         return this.getValue(rentalCostNumb).getDecimalValue();
     }
 
-    public Integer getClientId(){
+    public String getPassword(){
+        return this.getValue(passwordNumb).getVarcharValue();
+    }
+
+    public String getUserType(){
+        return this.getValue(userTypeNumb).getVarcharValue();
+    }
+
+    public Optional<Integer> getClientIdForUser(){
+        Optional<Reference> reference = this.getReference(beClientNumb).stream().findFirst();
+        return reference.map(Reference::getReference);
+    }
+
+    public Integer getClientIdForContract(){
         return this.getReverseReferences().stream().filter(v->v.getRef_type() == contractSignedNumb)
                 .findFirst().get().getObject_id();
     }
 
     public List<Integer> getContractId() {
-        return this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
+        List<Integer> contractsId = new ArrayList<>();
+        if(this.getReference(contractSignedNumb).size()!=0){
+            contractsId = this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
+        }
+        return contractsId;
+//        return this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
     }
 
     public Integer getVehicleIssuedId() {

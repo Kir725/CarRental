@@ -1,5 +1,6 @@
-package com.kolmikra.controller;
+package com.kolmikra.controller.impl;
 
+import com.kolmikra.controller.AbstractController;
 import com.kolmikra.entity.CommonClient;
 import com.kolmikra.entity.IndClient;
 import com.kolmikra.service.impl.ClientService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/client")
-public class ClientController extends AbstractController<CommonClient, ClientService>{
+@CrossOrigin
+public class ClientController extends AbstractController<CommonClient, ClientService> {
 
 }

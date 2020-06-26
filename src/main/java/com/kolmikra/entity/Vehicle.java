@@ -52,27 +52,4 @@ public class Vehicle extends AbstractEntity {
         this.rented = rented;
     }
 
-//    public Vehicle(VehicleDao vehicleDao) {
-//        this.id = vehicleDao.getId();
-//        this.regPlate = vehicleDao.getRegPlate();
-//        this.model = vehicleDao.getModel();
-//        this.make = vehicleDao.getMake();
-//        this.vehicleClass = vehicleDao.getVehicleClass();
-//        this.type = vehicleDao.getType();
-//        this.color = vehicleDao.getColor();
-//        this.issueYear = vehicleDao.getIssueYear();
-//        this.insuranceCost = vehicleDao.getInsuranceCost();
-//        this.capacity = vehicleDao.getCapacity();
-//        this.rentalCostPerDay = vehicleDao.getRentalCostPerDay();
-//        this.bail = vehicleDao.getBail();
-//        this.rented = vehicleDao.isRented();
-//    }
-//
-//    @Override
-//    @JsonIgnore
-//    public VehicleDao getDaoEntity() {
-//        return new VehicleDao(this);
-//    }
-
-
 }

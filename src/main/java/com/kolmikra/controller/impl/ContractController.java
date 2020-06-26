@@ -1,5 +1,6 @@
-package com.kolmikra.controller;
+package com.kolmikra.controller.impl;
 
+import com.kolmikra.controller.AbstractController;
 import com.kolmikra.entity.CommonClient;
 import com.kolmikra.entity.Contract;
 import com.kolmikra.service.impl.ClientService;
@@ -12,6 +13,7 @@ import java.awt.*;
 
 @RestController
 @RequestMapping("/contract")
-public class ContractController extends AbstractController<Contract, ContractService>{
+@CrossOrigin
+public class ContractController extends AbstractController<Contract, ContractService> {
 
 }

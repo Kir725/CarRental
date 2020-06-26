@@ -11,7 +11,7 @@ public interface CommonService<E extends AbstractEntity> {
 
     void deleteById(int id) throws NoSuchItemException ;
 
-    void create(E entity);
+    E create(E entity);
 
     E updateById(int id,E entity) throws NoSuchItemException;
 

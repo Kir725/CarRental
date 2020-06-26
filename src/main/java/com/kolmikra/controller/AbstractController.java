@@ -51,8 +51,8 @@ public abstract class AbstractController<E extends AbstractEntity, S extends Com
     @CrossOrigin
     @PostMapping("/create")
     @ResponseStatus(code = HttpStatus.CREATED)
-    public void create(@RequestBody E entity) {
-        service.create(entity);
+    public E create(@RequestBody E entity) {
+        return service.create(entity);
     }
 
     @CrossOrigin

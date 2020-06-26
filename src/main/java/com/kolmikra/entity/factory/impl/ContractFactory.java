@@ -1,9 +1,7 @@
 package com.kolmikra.entity.factory.impl;
 
-import com.kolmikra.controller.AbstractController;
 import com.kolmikra.entity.AbstractEntity;
 import com.kolmikra.entity.Contract;
-import com.kolmikra.entity.Vehicle;
 import com.kolmikra.entity.factory.EntityFactory;
 import com.kolmikra.entityDao.CommonEntityDao;
 import com.kolmikra.entityDao.Reference;
@@ -12,7 +10,6 @@ import com.kolmikra.entityDao.Value;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -26,10 +23,10 @@ public class ContractFactory implements EntityFactory {
         Contract contract = new Contract();
         contract.setId(commonEntityDao.getId());
         contract.setStartDate(commonEntityDao.getStartDate());
-        contract.setRentalTime(commonEntityDao.getRentalTime());
+        contract.setDropOffDate(commonEntityDao.getDropOffDate());
         contract.setRentalCost(commonEntityDao.getRentalCost());
         contract.setVehicleId(commonEntityDao.getVehicleIssuedId());
-        contract.setClientId(commonEntityDao.getClientId());
+        contract.setClientId(commonEntityDao.getClientIdForContract());
         return contract;
     }
 
@@ -41,7 +38,7 @@ public class ContractFactory implements EntityFactory {
             List<Value> newValues = new ArrayList<>();
             Collections.addAll(newValues,
                     new Value(commonEntityDao, startDateNumb, ((Contract) abstractEntity).getStartDate()),
-                    new Value(commonEntityDao, rentalTimeNumb, ((Contract) abstractEntity).getRentalTime()),
+                    new Value(commonEntityDao, dropOffDateNumb, ((Contract) abstractEntity).getDropOffDate()),
                     new Value(commonEntityDao, rentalCostNumb, ((Contract) abstractEntity).getRentalCost())
             );
             commonEntityDao.setValues(newValues);
