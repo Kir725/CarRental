@@ -5,7 +5,7 @@ import com.kolmikra.entity.Contract;
 import com.kolmikra.entity.factory.EntityFactory;
 import com.kolmikra.entityDao.CommonEntityDao;
 import com.kolmikra.entityDao.Reference;
-import com.kolmikra.entityDao.ReverseReference;
+import com.kolmikra.entityDao.BackReference;
 import com.kolmikra.entityDao.Value;
 import org.springframework.stereotype.Service;
 
@@ -47,8 +47,8 @@ public class ContractFactory implements EntityFactory {
                     new ArrayList<>(Collections.singletonList(
                             new Reference(commonEntityDao, ((Contract) abstractEntity).getVehicleId(), carIssuedNumb))));
 
-            commonEntityDao.setReverseReferences(new ArrayList<>(Collections.singletonList(
-                    new ReverseReference(((Contract) abstractEntity).getClientId(), commonEntityDao, contractSignedNumb))));
+            commonEntityDao.setBackReferences(new ArrayList<>(Collections.singletonList(
+                    new BackReference(((Contract) abstractEntity).getClientId(), commonEntityDao, contractSignedNumb))));
 
             return commonEntityDao;
         }

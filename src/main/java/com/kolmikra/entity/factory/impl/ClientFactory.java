@@ -29,7 +29,7 @@ public class ClientFactory implements EntityFactory {
             indClient.setPassportSeries(commonEntityDao.getPassportSeries());
             indClient.setPassportId(commonEntityDao.getPassportId());
             indClient.setBirthDate(commonEntityDao.getBirthDate());
-            if(commonEntityDao.getContractId().size()!=0){
+            if (commonEntityDao.getContractId().size() != 0) {
                 indClient.setContractsId(commonEntityDao.getContractId());
             }
             return indClient;
@@ -42,7 +42,7 @@ public class ClientFactory implements EntityFactory {
         legalClient.setEmail(commonEntityDao.getEmail());
         legalClient.setAgent(commonEntityDao.getAgent());
         legalClient.setOrganizationCode(commonEntityDao.getOrganizationCode());
-        if(commonEntityDao.getContractId().size()!=0){
+        if (commonEntityDao.getContractId().size() != 0) {
             legalClient.setContractsId(commonEntityDao.getContractId());
         }
         return legalClient;

@@ -33,28 +33,30 @@ public class VehicleFactory implements EntityFactory {
         vehicle.setInsuranceCost(commonEntityDao.getInsuranceCost());
         vehicle.setRented(commonEntityDao.isRented());
         vehicle.setBail(commonEntityDao.getBail());
+        vehicle.setVehicleImage(commonEntityDao.getVehicleImage());
         return vehicle;
     }
 
     @Override
     public CommonEntityDao getDaoEntity(AbstractEntity abstractEntity) {
-        if(abstractEntity instanceof Vehicle){
+        if (abstractEntity instanceof Vehicle) {
             CommonEntityDao commonEntityDao = new CommonEntityDao();
             commonEntityDao.setType_id(1);
             List<Value> newValues = new ArrayList<>();
             Collections.addAll(newValues,
-                    new Value(commonEntityDao,regPlateNumb,((Vehicle)abstractEntity).getRegPlate()),
-                    new Value(commonEntityDao,modelNumb,((Vehicle)abstractEntity).getModel()),
-                    new Value(commonEntityDao,makeNumb,((Vehicle)abstractEntity).getMake()),
-                    new Value(commonEntityDao,vehicleClassNumb,((Vehicle)abstractEntity).getVehicleClass()),
-                    new Value(commonEntityDao,vehicleTypeNumb,((Vehicle)abstractEntity).getType()),
-                    new Value(commonEntityDao,colorNumb,((Vehicle)abstractEntity).getColor()),
-                    new Value(commonEntityDao,issueYearNumb,((Vehicle)abstractEntity).getIssueYear()),
-                    new Value(commonEntityDao,insuranceCostNumb,((Vehicle)abstractEntity).getInsuranceCost()),
-                    new Value(commonEntityDao,capasityNumb,((Vehicle)abstractEntity).getCapacity()),
-                    new Value(commonEntityDao,rentalCostPerDayNumb,((Vehicle)abstractEntity).getRentalCostPerDay()),
-                    new Value(commonEntityDao,bailNumb,((Vehicle)abstractEntity).getBail()),
-                    new Value(commonEntityDao,rentedNumb,((Vehicle)abstractEntity).getRented()));
+                    new Value(commonEntityDao, regPlateNumb, ((Vehicle) abstractEntity).getRegPlate()),
+                    new Value(commonEntityDao, modelNumb, ((Vehicle) abstractEntity).getModel()),
+                    new Value(commonEntityDao, makeNumb, ((Vehicle) abstractEntity).getMake()),
+                    new Value(commonEntityDao, vehicleClassNumb, ((Vehicle) abstractEntity).getVehicleClass()),
+                    new Value(commonEntityDao, vehicleTypeNumb, ((Vehicle) abstractEntity).getType()),
+                    new Value(commonEntityDao, colorNumb, ((Vehicle) abstractEntity).getColor()),
+                    new Value(commonEntityDao, issueYearNumb, ((Vehicle) abstractEntity).getIssueYear()),
+                    new Value(commonEntityDao, insuranceCostNumb, ((Vehicle) abstractEntity).getInsuranceCost()),
+                    new Value(commonEntityDao, capasityNumb, ((Vehicle) abstractEntity).getCapacity()),
+                    new Value(commonEntityDao, rentalCostPerDayNumb, ((Vehicle) abstractEntity).getRentalCostPerDay()),
+                    new Value(commonEntityDao, bailNumb, ((Vehicle) abstractEntity).getBail()),
+                    new Value(commonEntityDao, rentedNumb, ((Vehicle) abstractEntity).getRented()),
+                    new Value(commonEntityDao, vehicleImage, (((Vehicle) abstractEntity).getVehicleImage())));
 
             commonEntityDao.setValues(newValues);
             return commonEntityDao;

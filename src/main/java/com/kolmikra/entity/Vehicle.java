@@ -32,6 +32,8 @@ public class Vehicle extends AbstractEntity {
 
     private Boolean rented;
 
+    private String vehicleImage;
+
     public Vehicle() {
 
     }

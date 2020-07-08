@@ -7,5 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public interface EntityFactory {
     <E extends AbstractEntity> E getRealEntity(CommonEntityDao commonEntityDao);
+
     <E extends CommonEntityDao> E getDaoEntity(AbstractEntity abstractEntity);
 }

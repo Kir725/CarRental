@@ -10,5 +10,4 @@ public abstract class AbstractEntity {
 
     protected int id;
 
-    //public abstract <ED extends AbstractEntityDao> ED getDaoEntity();
 }

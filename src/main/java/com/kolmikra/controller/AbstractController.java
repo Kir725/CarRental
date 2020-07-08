@@ -1,10 +1,5 @@
 package com.kolmikra.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.github.fge.jsonpatch.JsonPatch;
-import com.github.fge.jsonpatch.JsonPatchException;
-import com.kolmikra.entity.Vehicle;
 import com.kolmikra.exception.NoSuchItemException;
 import com.kolmikra.entity.AbstractEntity;
 import com.kolmikra.service.CommonService;
@@ -18,8 +13,12 @@ import java.util.List;
 @CrossOrigin
 public abstract class AbstractController<E extends AbstractEntity, S extends CommonService<E>> {
 
+    private final S service;
+
     @Autowired
-    S service;
+    public AbstractController(S service) {
+        this.service = service;
+    }
 
     @CrossOrigin
     @GetMapping("/find/{id}")
@@ -31,7 +30,7 @@ public abstract class AbstractController<E extends AbstractEntity, S extends Com
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-    
+
     @GetMapping("/find/all/{typeId}")
     public List<E> findAll(@PathVariable int typeId) {
         return service.findAll(typeId);
@@ -55,8 +54,9 @@ public abstract class AbstractController<E extends AbstractEntity, S extends Com
         return service.create(entity);
     }
 
-    @CrossOrigin
+
     @PutMapping("/update/{id}")
+    @CrossOrigin
     public ResponseEntity<E> update(@PathVariable int id, @RequestBody E entity) {
         try {
             E updated = service.updateById(id, entity);

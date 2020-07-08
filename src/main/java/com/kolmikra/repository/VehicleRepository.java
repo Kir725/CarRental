@@ -9,9 +9,9 @@ import java.sql.Date;
 import java.util.List;
 
 @Repository
-public interface VehicleRepository extends CommonRepository<CommonEntityDao>{
+public interface VehicleRepository extends CommonRepository<CommonEntityDao> {
 
-    @Query(value="SELECT e FROM CommonEntityDao e WHERE e.type_id = 1 AND (e.id IN " +
+    @Query(value = "SELECT e FROM CommonEntityDao e WHERE e.type_id = 1 AND (e.id IN " +
             "(SELECT r.reference FROM Reference r WHERE r.ref_type = 31 AND r.object_id IN " +
             "(SELECT v.object_id FROM Value v WHERE (v.attribute_id = 24 AND v.dateValue > :dropOffDate) " +
             "OR v.attribute_id = 25 AND v.dateValue < :pickupDate )) OR e.id NOT IN " +

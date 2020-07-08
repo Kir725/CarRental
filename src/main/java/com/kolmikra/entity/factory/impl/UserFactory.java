@@ -23,7 +23,7 @@ public class UserFactory implements EntityFactory {
         user.setEmail(commonEntityDao.getEmail());
         user.setPassword(commonEntityDao.getPassword());
         user.setUserType(commonEntityDao.getUserType());
-        if(commonEntityDao.getClientIdForUser().isPresent()){
+        if (commonEntityDao.getClientIdForUser().isPresent()) {
             user.setClientId(commonEntityDao.getClientIdForUser().get());
         }
         return user;
@@ -31,7 +31,7 @@ public class UserFactory implements EntityFactory {
 
     @Override
     public CommonEntityDao getDaoEntity(AbstractEntity abstractEntity) {
-        if(abstractEntity instanceof User){
+        if (abstractEntity instanceof User) {
             CommonEntityDao commonEntityDao = new CommonEntityDao();
             commonEntityDao.setType_id(5);
             List<Value> newValues = new ArrayList<>();
@@ -42,7 +42,7 @@ public class UserFactory implements EntityFactory {
 
             commonEntityDao.setValues(newValues);
 
-            if(((User) abstractEntity).getClientId() != null) {
+            if (((User) abstractEntity).getClientId() != null) {
                 commonEntityDao.setReferences(
                         new ArrayList<>(Collections.singletonList(
                                 new Reference(commonEntityDao, ((User) abstractEntity).getClientId(), beClientNumb))));

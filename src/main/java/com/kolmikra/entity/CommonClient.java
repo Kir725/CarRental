@@ -14,8 +14,8 @@ import java.util.List;
         include = JsonTypeInfo.As.PROPERTY,
         property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = IndClient.class, name = "физ"),
-        @JsonSubTypes.Type(value = LegalClient.class, name = "юр")
+        @JsonSubTypes.Type(value = IndClient.class, name = "ind"),
+        @JsonSubTypes.Type(value = LegalClient.class, name = "legal")
 })
 public abstract class CommonClient extends AbstractEntity {
 

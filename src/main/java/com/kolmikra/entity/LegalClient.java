@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class LegalClient extends CommonClient{
+public class LegalClient extends CommonClient {
 
     private String agent;
 

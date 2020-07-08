@@ -7,7 +7,7 @@ import java.sql.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class Contract extends AbstractEntity{
+public class Contract extends AbstractEntity {
 
     private Date startDate;
 

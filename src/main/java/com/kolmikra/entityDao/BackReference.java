@@ -10,7 +10,7 @@ import javax.persistence.*;
 @Entity
 @IdClass(ReferenceId.class)
 @Table(name = "reference")
-public class ReverseReference {
+public class BackReference {
 
     @Id
     private int object_id;
@@ -21,7 +21,7 @@ public class ReverseReference {
     @Id
     private int ref_type;
 
-    public ReverseReference() {
+    public BackReference() {
     }
 
     @JsonIgnore
@@ -29,7 +29,7 @@ public class ReverseReference {
         return reference;
     }
 
-    public ReverseReference(int object_id, CommonEntityDao reference, int ref_type) {
+    public BackReference(int object_id, CommonEntityDao reference, int ref_type) {
         this.object_id = object_id;
         this.reference = reference;
         this.ref_type = ref_type;

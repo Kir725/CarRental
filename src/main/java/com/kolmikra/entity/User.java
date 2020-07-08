@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class User extends AbstractEntity{
+public class User extends AbstractEntity {
 
     private String email;
 

@@ -6,6 +6,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -32,7 +33,7 @@ public class CommonEntityDao {
     private List<Reference> references;
 
     @OneToMany(mappedBy = "reference", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ReverseReference> reverseReferences;
+    private List<BackReference> backReferences;
 
 
     private Value getValue(int attrId) {
@@ -41,14 +42,13 @@ public class CommonEntityDao {
 
     private List<Reference> getReference(int refType) {
         List<Reference> references = new ArrayList<>();
-        if(null!=this.getReferences()){
-            this.getReferences().forEach(v->{
-                if(v.getRef_type()==refType){
+        if (null != this.getReferences()) {
+            this.getReferences().forEach(v -> {
+                if (v.getRef_type() == refType) {
                     references.add(v);
                 }
             });
         }
-//        return this.getReferences().stream().filter(v -> v.getRef_type() == refType).collect(Collectors.toList());
         return references;
     }
 
@@ -98,6 +98,10 @@ public class CommonEntityDao {
 
     public Boolean isRented() {
         return this.getValue(rentedNumb).getBooleanValue();
+    }
+
+    public String getVehicleImage() {
+        return this.getValue(vehicleImage).getVarcharValue();
     }
 
     public String getName() {
@@ -160,31 +164,29 @@ public class CommonEntityDao {
         return this.getValue(rentalCostNumb).getDecimalValue();
     }
 
-    public String getPassword(){
+    public String getPassword() {
         return this.getValue(passwordNumb).getVarcharValue();
     }
 
-    public String getUserType(){
+    public String getUserType() {
         return this.getValue(userTypeNumb).getVarcharValue();
     }
 
-    public Optional<Integer> getClientIdForUser(){
+    public Optional<Integer> getClientIdForUser() {
         Optional<Reference> reference = this.getReference(beClientNumb).stream().findFirst();
         return reference.map(Reference::getReference);
     }
 
-    public Integer getClientIdForContract(){
-        return this.getReverseReferences().stream().filter(v->v.getRef_type() == contractSignedNumb)
+    public Integer getClientIdForContract() {
+        return this.getBackReferences().stream().filter(v -> v.getRef_type() == contractSignedNumb)
                 .findFirst().get().getObject_id();
     }
 
     public List<Integer> getContractId() {
-        List<Integer> contractsId = new ArrayList<>();
-        if(this.getReference(contractSignedNumb).size()!=0){
-            contractsId = this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
+        if (!this.getReference(contractSignedNumb).isEmpty()) {
+            return this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
         }
-        return contractsId;
-//        return this.getReference(contractSignedNumb).stream().map(Reference::getReference).collect(Collectors.toList());
+        return Collections.EMPTY_LIST;
     }
 
     public Integer getVehicleIssuedId() {
@@ -195,12 +197,14 @@ public class CommonEntityDao {
     public List<Value> getValues() {
         return values;
     }
+
     @JsonIgnore
     public List<Reference> getReferences() {
         return references;
     }
+
     @JsonIgnore
-    public List<ReverseReference> getReverseReferences() {
-        return reverseReferences;
+    public List<BackReference> getBackReferences() {
+        return backReferences;
     }
 }

@@ -15,11 +15,15 @@ import java.util.List;
 public abstract class AbstractService<E extends AbstractEntity, F extends EntityFactory,
         R extends CommonRepository<CommonEntityDao>> implements CommonService<E> {
 
-    @Autowired
-    R repository;
+    private final R repository;
+
+    public final F entityFactory;
 
     @Autowired
-    F entityFactory;
+    public AbstractService(R repository, F entityFactory) {
+        this.repository = repository;
+        this.entityFactory = entityFactory;
+    }
 
     @Override
     public E findById(int id) throws NoSuchItemException {
@@ -61,6 +65,6 @@ public abstract class AbstractService<E extends AbstractEntity, F extends Entity
             result.add(entityFactory.getRealEntity(e));
         });
         return result;
-     }
+    }
 }
 

@@ -33,4 +33,5 @@ public interface AttributeTitle {
     int passwordNumb = 32;
     int userTypeNumb = 33;
     int beClientNumb = 34;
+    int vehicleImage = 35;
 }
