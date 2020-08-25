@@ -22,6 +22,7 @@ public class BackReference {
     private int ref_type;
 
     public BackReference() {
+
     }
 
     @JsonIgnore

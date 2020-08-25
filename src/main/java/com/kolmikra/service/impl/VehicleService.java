@@ -8,6 +8,7 @@ import com.kolmikra.repository.UserRepository;
 import com.kolmikra.repository.VehicleRepository;
 import com.kolmikra.service.impl.AbstractService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -23,6 +24,9 @@ public class VehicleService extends AbstractService<Vehicle, VehicleFactory, Veh
 
 
     private final VehicleRepository vehicleRepository;
+
+    @Value("${property.carsFolder}")
+    private String carsFolder;
 
     @Autowired
     public VehicleService(VehicleRepository vehicleRepository, VehicleFactory vehicleFactory) {
@@ -42,8 +46,7 @@ public class VehicleService extends AbstractService<Vehicle, VehicleFactory, Veh
     }
 
     public void saveCarImage(MultipartFile file) {
-        String path = "C:\\Users\\kirill\\IdeaProjects\\CarRental\\src\\main\\resources\\static\\assets\\images\\cars\\";
-        String finalPath = path + file.getOriginalFilename();
+        String finalPath = carsFolder + file.getOriginalFilename();
         File destFile = new File(finalPath);
         try {
             file.transferTo(destFile);

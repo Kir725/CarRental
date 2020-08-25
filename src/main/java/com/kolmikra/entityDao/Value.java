@@ -40,6 +40,12 @@ public class Value {
     public Value() {
     }
 
+    /**
+     *
+     * @param object_id
+     * @param attribute_id
+     * @param integerValue
+     */
     public Value(CommonEntityDao object_id, int attribute_id, Integer integerValue) {
         this.object_id = object_id;
         this.attribute_id = attribute_id;
